@@ -7,7 +7,7 @@
        01 OUTPUT_TEXT  PIC 9(1).
        PROCEDURE       DIVISION.
        MAIN-RTN.
-           MOVE "好き行く" TO INPUT_TEXT.
+           MOVE "好きだ" TO INPUT_TEXT.
            MOVE 1 TO TALK_COUNT.
            CALL "analysis" USING BY REFERENCE INPUT_TEXT
                                  BY VALUE TALK_COUNT

@@ -13,11 +13,11 @@ const SENTIMENT_TYPE_POSITIVE = 1;
 async function fetchTalkKeywords(sentimentType, talkCount) {
   const pool = mysql.createPool({
     connectionLimit: 10,
-    host : 'tokicobo-mysql-public.cjzqiuaqkjbq.ap-northeast-1.rds.amazonaws.com',
-    user : 'admin',
-    password : '5RULDddNdeF57zKhSkWV',
-    port : 3306,
-    database: 'tokicobo'
+    host : 'XXXX',
+    user : 'XXXX',
+    password : 'XXXX',
+    port : 9999,
+    database: 'XXXX'
   })
   pool.query = util.promisify(pool.query)
   try {
@@ -39,8 +39,8 @@ exports.handler = async (event) => {
     },
     json: {
       "grantType": "client_credentials",
-      "clientId": "Pb8KQuSwmc0xATlfcC4wn4LhpvktMXE8", 
-      "clientSecret": "cAkkDPKMQNq329DC"
+      "clientId": "XXXX", 
+      "clientSecret": "XXXX"
     }
   });
   const accessTokenBody = JSON.parse(accessTokenRes.getBody('utf8'));
