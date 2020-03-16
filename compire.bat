@@ -1,0 +1,1 @@
+cobc -x main.cob story.cob posi.cob nega.cob

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: tokicobo
+spec:
+  containers:
+  - name: tokicobo
+    image: mnagashio/tokicobo:latest
+    # for keeping a POD running
+    command: [ "/bin/bash", "-c", "--" ]
+    args: [ "while true; do sleep 30; done;" ]
