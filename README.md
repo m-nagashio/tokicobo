@@ -11,3 +11,5 @@ $ docker run -it mnagashio/tokicobo /bin/bash
 $ cd /home/tokicobo/
 $ ./build-n-run.sh
 ```
+# Notice
+* You may not be able to play depending on the status of the server. If you cannot connect, please contact [me](mailto:m.nagashio.n618m@gmail.com).
