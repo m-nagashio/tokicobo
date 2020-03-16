@@ -29,7 +29,7 @@ size_t buffer_writer(char *ptr, size_t size, size_t nmemb, void *stream) {
     return block;
 }
 
-const char *sendRequest(char *input) {
+int sendRequest(char *input, int talk_count) {
     CURL *curl;
     struct Buffer *buffer;
 
@@ -49,8 +49,12 @@ const char *sendRequest(char *input) {
     curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
 
     char post_data[1024];
+    char talk_count_char[12];
+    snprintf(talk_count_char, 12, "%d", talk_count);
     strcpy(post_data, "{\"input_text\": ");
     strcat(post_data, input);
+    strcat(post_data, ", \"talk_count\": ");
+    strcat(post_data, talk_count_char);
     strcat(post_data, "}");
 
     curl_easy_setopt(curl, CURLOPT_POST, 1);
@@ -67,10 +71,19 @@ const char *sendRequest(char *input) {
 
     json_object_object_get_ex(parsed_json_obj, "body", &body_obj);
 
-    const char *sentiment = json_object_get_string(body_obj);
+    const char *sentiment_code_char = json_object_get_string(body_obj);
+
+    if (sentiment_code_char == NULL) {
+        return 0;
+    }
+
+    int sentiment_code = 0;
+    if (strcmp(sentiment_code_char, "1")==0) {
+        sentiment_code = 1;
+    }
 
     free(buffer->data);
     free(buffer);
 
-    return sentiment;
+    return sentiment_code;
 }
